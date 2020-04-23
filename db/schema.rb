@@ -16,8 +16,10 @@ ActiveRecord::Schema.define(version: 2020_04_23_140239) do
     t.string "title", null: false
     t.text "plot", null: false
     t.integer "number", null: false
+    t.bigint "season_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["season_id"], name: "index_episodes_on_season_id"
   end
 
   create_table "video_contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
