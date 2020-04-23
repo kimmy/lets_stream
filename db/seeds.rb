@@ -314,11 +314,54 @@ seasons_with_episodes_array = [
   }
 ]
 
-movies = Movie.create(movies_array)
+purchase_options = PurchaseOption.create!([
+  {
+    price: 1.99,
+    quality: :sd
+  },
+  {
+    price: 2.25,
+    quality: :sd
+  },
+  {
+    price: 2.99,
+    quality: :hd
+  },
+  {
+    price: 3.25,
+    quality: :sd
+  },
+  {
+    price: 3.99,
+    quality: :hd
+  },
+  {
+    price: 4.99,
+    quality: :hd
+  }
+])
+
+movies = Movie.create!(movies_array)
+
+movies.each do |movie|
+  [
+    PurchaseOption.sd_quality.sample,
+    PurchaseOption.hd_quality.sample
+  ].each do |po|
+    VideoContentPurchaseOption.create(purchase_option: po, video_content: movie)
+  end
+end
+
 seasons = seasons_with_episodes_array.map do |season|
-  s = Season.create(season.except(:episodes))
+  s = Season.create!(season.except(:episodes))
   season[:episodes].map do |episode|
-    Episode.create(episode.merge({ season: s }))
+    Episode.create!(episode.merge({ season: s }))
+  end
+  [
+    PurchaseOption.sd_quality.sample,
+    PurchaseOption.hd_quality.sample
+  ].each do |po|
+    VideoContentPurchaseOption.create(purchase_option: po, video_content: s)
   end
   s
 end

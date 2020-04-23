@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_140239) do
+ActiveRecord::Schema.define(version: 2020_04_23_160408) do
 
   create_table "episodes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(version: 2020_04_23_140239) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["season_id"], name: "index_episodes_on_season_id"
+  end
+
+  create_table "purchase_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "price", null: false
+    t.string "quality", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "video_content_purchase_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "video_content_id", null: false
+    t.bigint "purchase_option_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["purchase_option_id"], name: "index_video_content_purchase_options_on_purchase_option_id"
+    t.index ["video_content_id"], name: "index_video_content_purchase_options_on_video_content_id"
   end
 
   create_table "video_contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
