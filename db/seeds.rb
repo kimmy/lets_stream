@@ -342,7 +342,7 @@ purchase_options = PurchaseOption.create!([
   }
 ])
 
-users = 5.times do
+users = Array.new(5) do
   User.create!(email: Faker::Internet.email)
 end
 
@@ -369,4 +369,10 @@ seasons = seasons_with_episodes_array.map do |season|
     VideoContentPurchaseOption.create(purchase_option: po, video_content: s)
   end
   s
+end
+
+users.each do |user|
+  Random.rand(5).times do
+    Purchase.create!(user: user, video_content_purchase_option: VideoContentPurchaseOption.all.sample)
+  end
 end
