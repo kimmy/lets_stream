@@ -5,7 +5,7 @@ RSpec.describe Purchase, type: :model do
   it { should belong_to(:video_content_purchase_option) }
 
   describe "duplicate purchases" do
-    let(:user) { create(:user_with_purchases)}
+    let(:user) { create(:user_with_purchases) }
     let(:purchases) { user.purchases }
     let(:new_video_content_purchase_option) { create(:video_content_purchase_option) }
     let(:recently_purchased_item) { purchases.last.video_content_purchase_option }

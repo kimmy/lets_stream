@@ -4,7 +4,7 @@ FactoryBot.define do
 
     factory :user_with_purchases do
       after(:create) do |user|
-        number_of_purchases = Random.rand(5)
+        number_of_purchases = Random.rand(1..5)
         create_list(:purchase, number_of_purchases, user: user)
       end
     end

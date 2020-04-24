@@ -10,17 +10,17 @@
 #### Ruby version
 This is using ruby 2.7.1
 ```bash
-  $ rbenv install 2.7.1
+$ rbenv install 2.7.1
 ```
 
-#### Database creation
+#### Install gems
 ```bash
-  $ rails db:create
+$ bundle
 ```
 
 #### Database initialization
 ```bash
-  $ rails db:setup
+$ rails db:setup
 ```
 
 #### How to run the test suite
