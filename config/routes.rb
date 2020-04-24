@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :users, only: [:show] do
         resources :libraries, path: 'library', only: [:index]
       end
+
+      resources :purchases, only: [:create]
     end
   end
 end

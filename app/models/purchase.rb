@@ -5,7 +5,7 @@ class Purchase < ApplicationRecord
   delegate :video_content, to: :video_content_purchase_option
 
   before_save :set_expiry
-  before_create :valid_purchase
+  validate :valid_purchase, on: :create
 
   scope :active, -> { where('expires_at > ?', DateTime.now) }
   default_scope { order(expires_at: :asc) }
