@@ -3,7 +3,11 @@ module Response
     render json: object, status: status
   end
 
-  def json_response_with_includes(object, includes, status = :ok)
-    render json: object, include: includes, status: status
+  def json_response_with_serializer(object, serializer, status = :ok, **options)
+    render json: object, serializer: serializer, status: status, options: options
+  end
+
+  def json_response_with_each_serializer(object, serializer, status = :ok, **options)
+    render json: object, each_serializer: serializer, status: status, options: options
   end
 end
