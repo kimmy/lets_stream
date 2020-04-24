@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   def library
-    purchases.includes(video_content_purchase_option: :video_content).active
+    Rails.cache.fetch("#{id}-library", expires_in: 24.hours) do
+      purchases.includes(video_content_purchase_option: :video_content).active
+    end
   end
 end

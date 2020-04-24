@@ -1,6 +1,6 @@
 class Api::V1::MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.list
     json_response(@movies)
   end
 end
