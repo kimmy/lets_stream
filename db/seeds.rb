@@ -373,6 +373,9 @@ end
 
 users.each do |user|
   Random.rand(5).times do
-    Purchase.create!(user: user, video_content_purchase_option: VideoContentPurchaseOption.all.sample)
+    purchase_item = VideoContentPurchaseOption.all.sample
+    if user.purchases.where(video_content_purchase_option_id: purchase_item.id).empty?
+      Purchase.create!(user: user, video_content_purchase_option: purchase_item)
+    end
   end
 end

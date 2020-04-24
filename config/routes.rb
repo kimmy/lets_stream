@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       resources :movies, only: [:index]
       resources :seasons, only: [:index]
       resources :movies_and_seasons, only: [:index]
+
+      resources :users, only: [:show] do
+        resources :libraries, path: 'library', only: [:index]
+      end
     end
   end
 end
