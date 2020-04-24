@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
 
 movies_array = [
@@ -340,6 +341,10 @@ purchase_options = PurchaseOption.create!([
     quality: :hd
   }
 ])
+
+users = 5.times do
+  User.create!(email: Faker::Internet.email)
+end
 
 movies = Movie.create!(movies_array)
 
